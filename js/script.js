@@ -1,31 +1,29 @@
-
 const counterWrapper = document.getElementById('counter-wrapper');
 
+// Funzione per creare elementi del DOM
+function creaElemento(tagName, id = '', textContent = '') {
+    const elemento = document.createElement(tagName);
+    if (id) elemento.id = id;
+    if (textContent) elemento.textContent = textContent;
+    return elemento;
+}
 
-const counterDisplay = document.createElement('h1');
-counterDisplay.id = 'counter-display';
-counterDisplay.textContent = '0';
+// Creazione del contatore display
+const counterDisplay = creaElemento('h1', 'counter-display', '0');
 counterWrapper.appendChild(counterDisplay);
 
-
-const buttonsContainer = document.createElement('div');
-buttonsContainer.id = 'buttons';
+// Creazione del contenitore per i pulsanti
+const buttonsContainer = creaElemento('div', 'buttons');
 counterWrapper.appendChild(buttonsContainer);
 
+// Creazione dei pulsanti
+const decreaseButton = creaElemento('button', 'decrease', '-');
+const resetButton = creaElemento('button', 'reset', 'Reset');
+const increaseButton = creaElemento('button', 'increase', '+');
 
-const decreaseButton = document.createElement('button');
-decreaseButton.id = 'decrease';
-decreaseButton.textContent = '-';
+// Aggiunta dei pulsanti al contenitore
 buttonsContainer.appendChild(decreaseButton);
-
-const resetButton = document.createElement('button');
-resetButton.id = 'reset';
-resetButton.textContent = 'Reset';
 buttonsContainer.appendChild(resetButton);
-
-const increaseButton = document.createElement('button');
-increaseButton.id = 'increase';
-increaseButton.textContent = '+';
 buttonsContainer.appendChild(increaseButton);
 
 let counter = 0;
@@ -34,7 +32,7 @@ function updateDisplay() {
   counterDisplay.textContent = counter;
 }
 
-
+// Gestore eventi per i pulsanti
 buttonsContainer.addEventListener('click', function(event) {
   const clickedButton = event.target.id;
 
@@ -48,4 +46,5 @@ buttonsContainer.addEventListener('click', function(event) {
 
   updateDisplay();
 });
+
 
